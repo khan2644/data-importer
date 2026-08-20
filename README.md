@@ -1,12 +1,14 @@
-# Data Importer
+# Ms Delight 🍔 —  Made 😋 with Love 💗, Served with Delight ❤️ 
 
-Import project
+Ek image deta hu uske according ek bahtreen 3d animation website with detailing or ordering website like Zomato Swiggy
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://render-and-order.lovable.app
+
 ## Build with Lovable
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/fb29756e-49eb-4d30-9593-70ce947b20cf).
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/5fbdfa62-b15b-4d3e-abd0-029ebca7ffa9).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
 - **Stay in sync**: every change made in Lovable is committed straight to this repository.
