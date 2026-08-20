@@ -62,26 +62,37 @@ export function useLiveStats() {
       )
       .subscribe();
 
-    const presenceKey = `guest-${Math.random().toString(36).slice(2, 10)}`;
-    const presenceChannel = supabase.channel(`site-presence`, {
-      config: { presence: { key: presenceKey } },
-    });
+    const presenceKey = getPresenceKey();
+    const presenceChannel =
+      supabase.getChannels().find((ch) => ch.topic === "realtime:site-presence") ??
+      supabase.channel("site-presence", { config: { presence: { key: presenceKey } } });
 
-    presenceChannel
-      .on("presence", { event: "sync" }, () => {
-        const count = Object.keys(presenceChannel.presenceState()).length;
-        if (active) setOnline(Math.max(1, count));
-      })
-      .subscribe((status) => {
-        if (status === "SUBSCRIBED") {
-          void presenceChannel.track({ at: Date.now() });
-        }
-      });
+    const listeners = presenceListeners;
+    const onSync = () => {
+      const count = Object.keys(presenceChannel.presenceState()).length;
+      if (active) setOnline(Math.max(1, count));
+    };
+    listeners.add(onSync);
+
+    if (!presenceSubscribed) {
+      presenceSubscribed = true;
+      presenceChannel
+        .on("presence", { event: "sync" }, () => {
+          listeners.forEach((fn) => fn());
+        })
+        .subscribe((status) => {
+          if (status === "SUBSCRIBED") {
+            void presenceChannel.track({ at: Date.now() });
+          }
+        });
+    } else {
+      onSync();
+    }
 
     return () => {
       active = false;
+      listeners.delete(onSync);
       void supabase.removeChannel(statsChannel);
-      void supabase.removeChannel(presenceChannel);
     };
   }, []);
 
