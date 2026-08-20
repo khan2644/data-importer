@@ -49,8 +49,9 @@ export function useLiveStats() {
 
     void boot();
 
+    const channelSuffix = Math.random().toString(36).slice(2, 10);
     const statsChannel = supabase
-      .channel("site-stats-changes")
+      .channel(`site-stats-changes-${channelSuffix}`)
       .on(
         "postgres_changes",
         { event: "UPDATE", schema: "public", table: "site_stats" },
