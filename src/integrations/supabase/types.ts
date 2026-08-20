@@ -14,13 +14,62 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      site_stats: {
+        Row: {
+          id: string
+          orders: number
+          updated_at: string
+          visits: number
+        }
+        Insert: {
+          id: string
+          orders?: number
+          updated_at?: string
+          visits?: number
+        }
+        Update: {
+          id?: string
+          orders?: number
+          updated_at?: string
+          visits?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      bump_order: {
+        Args: never
+        Returns: {
+          id: string
+          orders: number
+          updated_at: string
+          visits: number
+        }
+        SetofOptions: {
+          from: "*"
+          to: "site_stats"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      bump_visit: {
+        Args: never
+        Returns: {
+          id: string
+          orders: number
+          updated_at: string
+          visits: number
+        }
+        SetofOptions: {
+          from: "*"
+          to: "site_stats"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
     }
     Enums: {
       [_ in never]: never
