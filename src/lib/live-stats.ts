@@ -63,7 +63,7 @@ export function useLiveStats() {
       .subscribe();
 
     const presenceKey = `guest-${Math.random().toString(36).slice(2, 10)}`;
-    const presenceChannel = supabase.channel("site-presence", {
+    const presenceChannel = supabase.channel(`site-presence`, {
       config: { presence: { key: presenceKey } },
     });
 
