@@ -5,6 +5,15 @@ export type SiteStats = { visits: number; orders: number };
 
 const VISIT_FLAG = "msdelight-visit-counted";
 
+/** Shared presence channel state (one per browser tab, survives StrictMode remounts). */
+const presenceListeners = new Set<() => void>();
+let presenceSubscribed = false;
+let presenceKeyCache: string | null = null;
+function getPresenceKey() {
+  if (!presenceKeyCache) presenceKeyCache = `guest-${Math.random().toString(36).slice(2, 10)}`;
+  return presenceKeyCache;
+}
+
 /**
  * Live site counters:
  *  - `online`  : people on the site right now (realtime presence)
