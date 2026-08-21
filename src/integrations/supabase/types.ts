@@ -14,6 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
+      orders: {
+        Row: {
+          address: string
+          area: string
+          code: string
+          created_at: string
+          customer_name: string
+          delivery: number
+          id: string
+          item_count: number
+          items: Json
+          landmark: string | null
+          phone: string
+          pincode: string
+          source: string
+          status: string
+          subtotal: number
+          total: number
+          updated_at: string
+        }
+        Insert: {
+          address: string
+          area: string
+          code: string
+          created_at?: string
+          customer_name: string
+          delivery?: number
+          id?: string
+          item_count?: number
+          items?: Json
+          landmark?: string | null
+          phone: string
+          pincode: string
+          source?: string
+          status?: string
+          subtotal?: number
+          total?: number
+          updated_at?: string
+        }
+        Update: {
+          address?: string
+          area?: string
+          code?: string
+          created_at?: string
+          customer_name?: string
+          delivery?: number
+          id?: string
+          item_count?: number
+          items?: Json
+          landmark?: string | null
+          phone?: string
+          pincode?: string
+          source?: string
+          status?: string
+          subtotal?: number
+          total?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       site_stats: {
         Row: {
           id: string
@@ -32,6 +92,27 @@ export type Database = {
           orders?: number
           updated_at?: string
           visits?: number
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
         }
         Relationships: []
       }
@@ -70,9 +151,17 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      claim_admin: { Args: never; Returns: boolean }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -199,6 +288,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
