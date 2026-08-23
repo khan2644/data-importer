@@ -6,7 +6,7 @@ import type { Dish } from "@/lib/menu";
 import { cn } from "@/lib/utils";
 
 export function DishCard({ dish, index = 0 }: { dish: Dish; index?: number }) {
-  const { add, remove, qtyOf } = useCart();
+  const { add, remove, qtyOf, openCart } = useCart();
   const qty = qtyOf(dish.id);
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -74,8 +74,15 @@ export function DishCard({ dish, index = 0 }: { dish: Dish; index?: number }) {
             </span>
           </div>
           <p className="line-clamp-2 text-sm text-muted-foreground">{dish.desc}</p>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <Timer className="size-3.5" /> {dish.time}
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
+            <span className="flex items-center gap-1.5">
+              <Timer className="size-3.5" /> {dish.time}
+            </span>
+            {dish.pieces && (
+              <span className="rounded-full bg-secondary px-2 py-0.5 font-bold text-primary">
+                {dish.pieces} Piece
+              </span>
+            )}
           </div>
 
           <div className="flex items-center justify-between pt-1">
@@ -90,7 +97,37 @@ export function DishCard({ dish, index = 0 }: { dish: Dish; index?: number }) {
               <button
                 onClick={() => {
                   add(dish.id);
-                  toast.success(`${dish.name} added to cart`);
+                  toast.custom(
+                    (t) => (
+                      <button
+                        onClick={() => {
+                          toast.dismiss(t);
+                          openCart();
+                        }}
+                        className="flex w-full items-center gap-3 rounded-2xl border border-border bg-card p-3 text-left shadow-[var(--shadow-card)]"
+                      >
+                        <img
+                          src={dish.image}
+                          alt={dish.name}
+                          width={80}
+                          height={80}
+                          className="size-12 rounded-xl object-cover"
+                        />
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate text-sm font-bold text-primary">
+                            {dish.name} added
+                          </span>
+                          <span className="block text-xs text-muted-foreground">
+                            Tap to open your cart
+                          </span>
+                        </span>
+                        <span className="gold-ring rounded-full px-3 py-1.5 text-xs font-bold text-accent-foreground">
+                          View cart
+                        </span>
+                      </button>
+                    ),
+                    { duration: 4000 },
+                  );
                 }}
                 className="gold-ring rounded-full px-5 py-2 text-sm font-bold text-accent-foreground transition-transform duration-300 hover:scale-105 active:scale-95"
               >

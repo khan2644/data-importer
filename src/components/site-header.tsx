@@ -19,7 +19,7 @@ const NAV = [
 
 
 export function SiteHeader() {
-  const { count, detailed, add, remove } = useCart();
+  const { count, detailed, add, remove, cartOpen, setCartOpen } = useCart();
   const [open, setOpen] = useState(false);
 
 
@@ -53,7 +53,7 @@ export function SiteHeader() {
             <Phone className="size-4" /> {BRAND.phone}
           </a>
 
-          <Sheet>
+          <Sheet open={cartOpen} onOpenChange={setCartOpen}>
             <SheetTrigger asChild>
               <button
                 aria-label="Open cart"

@@ -12,6 +12,9 @@ type CartCtx = {
   count: number;
   subtotal: number;
   detailed: { dish: Dish; qty: number }[];
+  cartOpen: boolean;
+  setCartOpen: (v: boolean) => void;
+  openCart: () => void;
 };
 
 const Ctx = createContext<CartCtx | null>(null);
@@ -19,6 +22,7 @@ const KEY = "msdelight-cart";
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [lines, setLines] = useState<CartLine[]>([]);
+  const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -61,8 +65,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
       qtyOf: (id) => lines.find((l) => l.id === id)?.qty ?? 0,
       count: lines.reduce((s, l) => s + l.qty, 0),
       subtotal: detailed.reduce((s, l) => s + l.dish.price * l.qty, 0),
+      cartOpen,
+      setCartOpen,
+      openCart: () => setCartOpen(true),
     };
-  }, [lines]);
+  }, [lines, cartOpen]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

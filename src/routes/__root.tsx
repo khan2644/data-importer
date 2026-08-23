@@ -16,6 +16,7 @@ import { ThemeProvider } from "@/lib/theme";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Toaster } from "@/components/ui/sonner";
+import { SplashScreen } from "@/components/splash-screen";
 
 function NotFoundComponent() {
   return (
@@ -89,6 +90,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Crafted with love, delivered with delight." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "theme-color", content: "#1f4d2b" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-title", content: "Ms Delight" },
+      { name: "mobile-web-app-capable", content: "yes" },
     ],
     links: [
       {
@@ -101,7 +106,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "manifest", href: "/manifest.webmanifest" },
+      { rel: "apple-touch-icon", href: "/app-icon-192.png" },
     ],
   }),
   shellComponent: RootShell,
@@ -131,6 +138,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <CartProvider>
+        <SplashScreen />
         <SiteHeader />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />

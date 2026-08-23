@@ -4,6 +4,8 @@ import rolls from "@/assets/dish-rolls.jpg";
 import fries from "@/assets/dish-fries.jpg";
 import wrap from "@/assets/dish-wrap.jpg";
 import drink from "@/assets/dish-drink.jpg";
+import chocoSandwich from "@/assets/dish-choco-sandwich.jpg";
+import dahiVada from "@/assets/dish-dahi-vada.jpg";
 
 export type Dish = {
   id: string;
@@ -11,7 +13,8 @@ export type Dish = {
   desc: string;
   price: number;
   mrp?: number;
-  category: "Combos" | "Burgers" | "Pizza" | "Sides" | "Wraps" | "Drinks";
+  category: "Combos" | "Burgers" | "Pizza" | "Sides" | "Wraps" | "Snacks" | "Desserts" | "Drinks";
+  pieces?: number;
   veg: boolean;
   rating: number;
   time: string;
@@ -26,6 +29,8 @@ export const CATEGORIES = [
   "Pizza",
   "Wraps",
   "Sides",
+  "Snacks",
+  "Desserts",
   "Drinks",
 ] as const;
 
@@ -70,14 +75,42 @@ export const MENU: Dish[] = [
   },
   {
     id: "rolls-spring",
-    name: "Crispy Spring Rolls",
-    desc: "Six golden rolls with sweet chilli dip, fried fresh on order",
+    name: "Chicken Spring Roll",
+    desc:
+      "Crispy outside, delicious inside — 5 pieces fried fresh in Tirupati oil, served with sweet chilli dip. Light, crispy and made with love.",
     price: 99,
-    category: "Sides",
-    veg: true,
-    rating: 4.6,
+    pieces: 5,
+    category: "Snacks",
+    veg: false,
+    rating: 4.8,
     time: "18 min",
     image: rolls,
+    bestseller: true,
+  },
+  {
+    id: "sandwich-chocolate",
+    name: "Chocolate Sandwich",
+    desc:
+      "White bread loaded with cheese, chocolate chips and rich chocolate syrup — cheesy, chocolaty and absolutely irresistible. Made fresh on order.",
+    price: 79,
+    category: "Desserts",
+    veg: true,
+    rating: 4.9,
+    time: "15 min",
+    image: chocoSandwich,
+    bestseller: true,
+  },
+  {
+    id: "dahi-vada",
+    name: "Dahi Vada",
+    desc:
+      "Soft, spongy vadas in chilled creamy curd with tangy tamarind, mint chutney and masala. All inclusive — thanda, soft and full of flavours.",
+    price: 60,
+    category: "Snacks",
+    veg: true,
+    rating: 4.7,
+    time: "20 min",
+    image: dahiVada,
   },
   {
     id: "fries-cheesy",
