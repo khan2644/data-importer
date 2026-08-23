@@ -13,7 +13,8 @@ export type Dish = {
   desc: string;
   price: number;
   mrp?: number;
-  category: "Combos" | "Burgers" | "Pizza" | "Sides" | "Wraps" | "Drinks";
+  category: "Combos" | "Burgers" | "Pizza" | "Sides" | "Wraps" | "Snacks" | "Desserts" | "Drinks";
+  pieces?: number;
   veg: boolean;
   rating: number;
   time: string;
