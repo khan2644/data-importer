@@ -6,7 +6,7 @@ import type { Dish } from "@/lib/menu";
 import { cn } from "@/lib/utils";
 
 export function DishCard({ dish, index = 0 }: { dish: Dish; index?: number }) {
-  const { add, remove, qtyOf } = useCart();
+  const { add, remove, qtyOf, openCart } = useCart();
   const qty = qtyOf(dish.id);
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -74,8 +74,15 @@ export function DishCard({ dish, index = 0 }: { dish: Dish; index?: number }) {
             </span>
           </div>
           <p className="line-clamp-2 text-sm text-muted-foreground">{dish.desc}</p>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <Timer className="size-3.5" /> {dish.time}
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
+            <span className="flex items-center gap-1.5">
+              <Timer className="size-3.5" /> {dish.time}
+            </span>
+            {dish.pieces && (
+              <span className="rounded-full bg-secondary px-2 py-0.5 font-bold text-primary">
+                {dish.pieces} Piece
+              </span>
+            )}
           </div>
 
           <div className="flex items-center justify-between pt-1">
