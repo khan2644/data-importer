@@ -29,6 +29,8 @@ export const CATEGORIES = [
   "Pizza",
   "Wraps",
   "Sides",
+  "Snacks",
+  "Desserts",
   "Drinks",
 ] as const;
 
