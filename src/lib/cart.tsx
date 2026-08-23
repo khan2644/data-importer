@@ -12,6 +12,9 @@ type CartCtx = {
   count: number;
   subtotal: number;
   detailed: { dish: Dish; qty: number }[];
+  cartOpen: boolean;
+  setCartOpen: (v: boolean) => void;
+  openCart: () => void;
 };
 
 const Ctx = createContext<CartCtx | null>(null);
