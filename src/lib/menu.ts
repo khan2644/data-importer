@@ -4,6 +4,8 @@ import rolls from "@/assets/dish-rolls.jpg";
 import fries from "@/assets/dish-fries.jpg";
 import wrap from "@/assets/dish-wrap.jpg";
 import drink from "@/assets/dish-drink.jpg";
+import chocoSandwich from "@/assets/dish-choco-sandwich.jpg";
+import dahiVada from "@/assets/dish-dahi-vada.jpg";
 
 export type Dish = {
   id: string;
