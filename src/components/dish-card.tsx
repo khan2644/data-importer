@@ -97,7 +97,13 @@ export function DishCard({ dish, index = 0 }: { dish: Dish; index?: number }) {
               <button
                 onClick={() => {
                   add(dish.id);
-                  toast.success(`${dish.name} added to cart`);
+                  toast.success(`${dish.name} added to cart`, {
+                    description: "Tap to open your cart",
+                    action: { label: "View cart", onClick: () => openCart() },
+                    onDismiss: () => {},
+                    className: "cursor-pointer",
+                    onAutoClose: () => {},
+                  });
                 }}
                 className="gold-ring rounded-full px-5 py-2 text-sm font-bold text-accent-foreground transition-transform duration-300 hover:scale-105 active:scale-95"
               >
