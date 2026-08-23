@@ -97,13 +97,37 @@ export function DishCard({ dish, index = 0 }: { dish: Dish; index?: number }) {
               <button
                 onClick={() => {
                   add(dish.id);
-                  toast.success(`${dish.name} added to cart`, {
-                    description: "Tap to open your cart",
-                    action: { label: "View cart", onClick: () => openCart() },
-                    onDismiss: () => {},
-                    className: "cursor-pointer",
-                    onAutoClose: () => {},
-                  });
+                  toast.custom(
+                    (t) => (
+                      <button
+                        onClick={() => {
+                          toast.dismiss(t);
+                          openCart();
+                        }}
+                        className="flex w-full items-center gap-3 rounded-2xl border border-border bg-card p-3 text-left shadow-[var(--shadow-card)]"
+                      >
+                        <img
+                          src={dish.image}
+                          alt={dish.name}
+                          width={80}
+                          height={80}
+                          className="size-12 rounded-xl object-cover"
+                        />
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate text-sm font-bold text-primary">
+                            {dish.name} added
+                          </span>
+                          <span className="block text-xs text-muted-foreground">
+                            Tap to open your cart
+                          </span>
+                        </span>
+                        <span className="gold-ring rounded-full px-3 py-1.5 text-xs font-bold text-accent-foreground">
+                          View cart
+                        </span>
+                      </button>
+                    ),
+                    { duration: 4000 },
+                  );
                 }}
                 className="gold-ring rounded-full px-5 py-2 text-sm font-bold text-accent-foreground transition-transform duration-300 hover:scale-105 active:scale-95"
               >
