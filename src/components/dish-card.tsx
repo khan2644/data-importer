@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { useCart } from "@/lib/cart";
 import type { Dish } from "@/lib/menu";
 import { cn } from "@/lib/utils";
+import { FoodStoryPreview } from "@/components/food-story-preview";
 
 export function DishCard({ dish, index = 0 }: { dish: Dish; index?: number }) {
   const { add, remove, qtyOf, openCart } = useCart();
@@ -62,6 +63,7 @@ export function DishCard({ dish, index = 0 }: { dish: Dish; index?: number }) {
               )}
             />
           </span>
+          <FoodStoryPreview dish={dish} />
         </div>
 
         <div className="space-y-3 p-5">

@@ -20,6 +20,9 @@ export type Dish = {
   time: string;
   image: string;
   bestseller?: boolean;
+  ingredients: string[];
+  quality: string[];
+  layers: [string, string, string, string];
 };
 
 export const CATEGORIES = [
@@ -47,6 +50,9 @@ export const MENU: Dish[] = [
     time: "25 min",
     image: combo,
     bestseller: true,
+    ingredients: ["Chicken patty", "Cheese", "Fresh salad", "Fries", "Cold drink"],
+    quality: ["Cooked after ordering", "Freshly packed"],
+    layers: ["Toasted bun", "Melted cheese", "Chicken patty", "Crisp salad"],
   },
   {
     id: "burger-cheese",
@@ -60,6 +66,9 @@ export const MENU: Dish[] = [
     time: "20 min",
     image: combo,
     bestseller: true,
+    ingredients: ["Chicken patty", "Cheese centre", "Lettuce", "Onion", "Soft bun"],
+    quality: ["Freshly assembled", "Made to order"],
+    layers: ["Top bun", "Cheese", "Chicken patty", "Bottom bun"],
   },
   {
     id: "pizza-cheese",
@@ -72,6 +81,9 @@ export const MENU: Dish[] = [
     rating: 4.7,
     time: "30 min",
     image: pizza,
+    ingredients: ["Pizza base", "Tomato sauce", "Mozzarella", "Herbs"],
+    quality: ["Hand-stretched base", "Baked on order"],
+    layers: ["Herbed cheese", "Mozzarella", "Tomato sauce", "Fresh base"],
   },
   {
     id: "rolls-spring",
@@ -86,6 +98,9 @@ export const MENU: Dish[] = [
     time: "18 min",
     image: rolls,
     bestseller: true,
+    ingredients: ["Chicken filling", "Fresh vegetables", "Crisp wrapper", "Sweet chilli dip"],
+    quality: ["Fried fresh", "Prepared in Tirupati oil"],
+    layers: ["Crisp wrapper", "Chicken", "Vegetables", "Sweet chilli dip"],
   },
   {
     id: "sandwich-chocolate",
@@ -99,6 +114,9 @@ export const MENU: Dish[] = [
     time: "15 min",
     image: chocoSandwich,
     bestseller: true,
+    ingredients: ["White bread", "Cheese", "Chocolate chips", "Chocolate syrup"],
+    quality: ["Made fresh on order", "Served warm"],
+    layers: ["Toasted bread", "Chocolate syrup", "Cheese", "Chocolate chips"],
   },
   {
     id: "dahi-vada",
@@ -111,6 +129,9 @@ export const MENU: Dish[] = [
     rating: 4.7,
     time: "20 min",
     image: dahiVada,
+    ingredients: ["Soft vada", "Chilled curd", "Tamarind chutney", "Mint chutney", "Masala"],
+    quality: ["Freshly assembled", "Served chilled"],
+    layers: ["Masala", "Mint chutney", "Creamy curd", "Soft vada"],
   },
   {
     id: "fries-cheesy",
@@ -123,6 +144,9 @@ export const MENU: Dish[] = [
     time: "15 min",
     image: fries,
     bestseller: true,
+    ingredients: ["Potato fries", "Cheddar sauce", "Peri seasoning", "Salt"],
+    quality: ["Fried to order", "Sauced before serving"],
+    layers: ["Peri sprinkle", "Cheddar sauce", "Crisp fries", "Fresh potato"],
   },
   {
     id: "wrap-paneer",
@@ -134,6 +158,9 @@ export const MENU: Dish[] = [
     rating: 4.7,
     time: "22 min",
     image: wrap,
+    ingredients: ["Paneer tikka", "Mint mayo", "Fresh salad", "Soft roti"],
+    quality: ["Char-grilled filling", "Rolled fresh"],
+    layers: ["Soft roti", "Mint mayo", "Paneer tikka", "Crunchy salad"],
   },
   {
     id: "drink-cola",
@@ -145,6 +172,9 @@ export const MENU: Dish[] = [
     rating: 4.5,
     time: "10 min",
     image: drink,
+    ingredients: ["Chilled cola", "Ice", "Fresh lemon"],
+    quality: ["Sealed serving", "Served ice cold"],
+    layers: ["Cold fizz", "Fresh lemon", "Crystal ice", "Sealed glass"],
   },
 ];
 
